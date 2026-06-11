@@ -183,8 +183,15 @@ function setLang(lang){
     b.style.background=on?"linear-gradient(135deg,#0A7FAF,#074E7A)":"transparent";
     b.style.color=on?"#fff":"#6B7280";
   });
+document.querySelectorAll("[data-en]").forEach(el=>{
+    const txt=el.getAttribute("data-"+lang);
+    if(txt)el.innerHTML=txt;
+  });
+  document.querySelectorAll("[data-placeholder-en]").forEach(el=>{
+    const ph=el.getAttribute("data-placeholder-"+lang);
+    if(ph)el.placeholder=ph;
+  });
 }
-
 /* ════════ SUBSCRIPTION PLANS RENDER ════════ */
 function renderPlans(role,formId){
   const plans=PLANS[role];if(!plans)return "";
