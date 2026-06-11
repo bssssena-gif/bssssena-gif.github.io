@@ -1,6 +1,6 @@
 /* DocNear V3 – Complete Production App */
 const SURL = "https://avonzvocvonvzamedwvh.supabase.co";
-const SKEY = "sb_publishable_wvfdYDM_JGE8q5NrcYl0EQ_tDOTBL2I";
+const SKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2b256dm9jdm9udnphbWVkd3ZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4ODYwNzgsImV4cCI6MjA5NTQ2MjA3OH0.bU2WLrqDnTEggKnLvJjY07VyNATfIyMGppTw7FWD50w";
 const SK   = "dn_session_v3";
 
 /* ── SHA-256 ── */
