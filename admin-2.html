@@ -518,13 +518,19 @@ async function loadAllData(){
 }
 async function refreshAll(){toast("Refreshing...");await loadAllData();toast("Refreshed! ✅");}
 function renderAll(){renderOverview();renderPending();renderStoreApprovals();renderAmbuApprovals();renderLabApprovals();renderDoctors();renderPatients();renderStores();renderAmbulances();renderAppointments();renderReviews();renderEarnings();renderAnalytics();renderBroadcastHistory();renderKYC();renderAdmins();renderSupport();}
-
+function setB(id,n,cls){
+  const b=$(id);
+  if(!b)return;
+  b.textContent=n;
+  b.style.display=n ? "inline-flex" : "none";
+  if(cls)b.className="sb-bdg "+cls;
+  }
 function updateBadges(){
   const{docs,stores,ambus,appts}=ADMIN.data;
   const pdoc=docs.filter(d=>!d.approved);
   const pstore=stores.filter(s=>!s.approved);
   const pambu=ambus.filter(a=>!a.approved);
-  const setB=(id,n,cls)=>{const b=$(id);if(!b)return;b.textContent=n;b.style.display=n?"inline-flex":"none";if(cls)b.className="sb-bdg "+cls;};
+
   setB("bdg-pending",pdoc.length,"red");
   setB("bdg-stores",pstore.length,"red");
   setB("bdg-ambu",pambu.length,"red");
