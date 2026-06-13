@@ -3,13 +3,19 @@
    File: sw.js (same folder as DocNear.html)
    ═══════════════════════════════════════════════ */
 
-const CACHE_NAME = "docnear-v7";
+const CACHE_NAME = "docnear-v8";
 const STATIC_ASSETS = [
-  "./DocNear.html",
+  "./index.html",
   "./DocNear.css",
   "./DocNear.js",
+  "./admin.html",
   "./manifest.json"
 ];
+  
+  
+  
+  
+
 
 /* ── Install: cache static files ── */
 self.addEventListener("install", event => {
