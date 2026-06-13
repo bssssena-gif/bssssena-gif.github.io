@@ -482,7 +482,7 @@ function doLogout(){SESSION.clear();ADMIN.user=null;$("dashboard").style.display
 function checkSession(){
   const s=SESSION.load();
   if(!s)return;
-  ADMIN.user=s;
+  ADMIN.user=s.u||s;
   initDashboard();
 }
 function initDashboard(){
