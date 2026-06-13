@@ -445,7 +445,7 @@ async function adminLogin(){
     try{const r=await DB.get("admins",`email=eq.${enc(email)}&password_hash=eq.${enc(hash)}&is_active=eq.true`);if(r.length){A.user=r[0];ok=true;}}catch{}
     if(!ok&&A.demo&&email==="admin@docnear.com"&&pw==="admin123"){A.user={name:"Admin",email};ok=true;}
     if(!ok){toast("Invalid admin credentials.",true);return;}
-    A.role="admin";S.save(A.user,"admin");
+    A.role="admin";S.save(A.user,"admin");localStorage.setItem("dn_session_v3",JSON.stringify({...A.user,role:"admin",at:Date.now()}));
     toast("Welcome, Admin! 🛡️");window.location.href="admin.html";
   }catch(e){toast(e.message,true);}
   finally{if(btn){btn.disabled=false;btn.textContent="Admin Sign In";}}
