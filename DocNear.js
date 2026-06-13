@@ -170,7 +170,7 @@ function logout(){
 }
 function redirectRole(role){
   const r={patient:"patientDash",doctor:"doctorDash",store:"storeDash",ambulance:"ambuDash",lab:"labDash",admin:null};
-  if(role==="admin"){window.location.href="admin.html";return;}
+  if(role==="admin"){setTimeout(()=>{window.location.href="admin.html";},300);return;}
   go(r[role]||"landing");
 }
 
