@@ -3,7 +3,7 @@
    File: sw.js (same folder as DocNear.html)
    ═══════════════════════════════════════════════ */
 
-const CACHE_NAME = "docnear-v5";
+const CACHE_NAME = "docnear-v6";
 const STATIC_ASSETS = [
   "./DocNear.html",
   "./DocNear.css",
