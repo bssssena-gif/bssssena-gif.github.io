@@ -508,7 +508,7 @@ async function processPayment(role,amount,plan){
   // Razorpay integration
   if(typeof Razorpay!=="undefined"){
     const opts={
-      key:"rzp_test_YourKeyHere",
+      key:rzp_live_T1Ne2uFvUISXye,dsAEqJF6JYdP7dE0rqYJUL6U
       amount:amount*100,currency:"INR",
       name:"DocNear",
       description:`${plan.name} Subscription`,
