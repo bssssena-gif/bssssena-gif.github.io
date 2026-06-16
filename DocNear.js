@@ -743,12 +743,16 @@ async function rDoctorDash(){
       ["📍","Location",u.district||u.city||u.location],["📋","Reg. No.",u.reg_number],
       ["💰","Fee","₹"+u.fee],["💼","Experience",(u.experience||0)+" yrs"],
       ["📞","Phone",u.phone],["🎓","Qualifications",u.qualifications],
-      ["💎","Subscription",(u.subscription||"—").toUpperCase()]
+      ["💎","Subscription",(u.subscription||"—").toUpperCase()],
+      ["🎥","Video Consult",u.video_consult?"✅ Enabled":"❌ Disabled"]
     ].map(([ic,l,v])=>`<div class="dd-info-item"><div class="dd-info-lbl">${ic} ${l}</div><div class="dd-info-val">${safe(v)||"—"}</div></div>`).join("");
     if($("dd-about"))$("dd-about").textContent=u.about||"";
-    if($("dd-slots"))$("dd-slots").innerHTML=(u.slots||[]).map(s=>`<span class="profile-slot-tag">🕐 ${s}</span>`).join("");
+    if($("dd-slots"))$("dd-slots").innerHTML=...
+    if($("dd-video-btn")){const vc=u.video_consult||false;$("dd-video-btn").textContent=vc?"🎥 Video ON — Disable":"🎥 Video OFF — Enable";$("dd-video-btn").style.background=vc?"#7C4DFF":"#9CA3AF";}
   }catch(e){toast("Error: "+e.message,true);}
 }
+  
+
 
 /* ════════ STORE DASH ════════ */
 async function rStoreDash(){
