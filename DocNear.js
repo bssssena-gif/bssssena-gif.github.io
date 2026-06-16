@@ -130,7 +130,7 @@ function toast(msg,err=false){
   clearTimeout(el._t);el._t=setTimeout(()=>el.style.display="none",4200);
 }
 function spin(id,msg="Loading..."){const el=$(id);if(el)el.innerHTML=`<div class="loading-box"><div class="spinner"></div>${msg}</div>`;}
-function sc(ic,lb,v,bg="#E3F4FC",vc="#0A7FAF"){
+function sc(ic,lb,v,bg="#E3F4FC",vc="#0A7FAF",scrollTo=""){
   return `<div class="stat-card"><div class="stat-icon" style="background:${bg}">${ic}</div><div><div class="stat-val" style="color:${vc}">${v}</div><div class="stat-lbl">${lb}</div></div></div>`;
 }
 function empty(ic,msg,btn=""){
@@ -697,9 +697,9 @@ async function rPatientDash(){
     A.cache.docs=docs.length?docs:DEMO.docs;
     if($("pd-stats"))$("pd-stats").innerHTML=
       sc("📅","Appointments",A.cache.appts.length,"#E3F4FC","#0A7FAF","pd-appts")+
-sc("✅","Confirmed",A.cache.appts.filter(a=>a.status==="confirmed").length,"#D1FAE5","#059669","pd-appts")+
-sc("🎥","Video",A.cache.appts.filter(a=>a.is_video).length,"#EDE9FE","#7C4DFF","pd-appts")+
-sc("👨‍⚕️","Doctors",new Set(A.cache.appts.map(a=>a.doctor_id)).size,"#FEE9E1","#FF6B35","pd-doctors");
+      sc("✅","Confirmed",A.cache.appts.filter(a=>a.status==="confirmed").length,"#D1FAE5","#059669","pd-appts")+
+      sc("🎥","Video",A.cache.appts.filter(a=>a.is_video).length,"#EDE9FE","#7C4DFF","pd-appts")+
+      sc("👨‍⚕️","Doctors",new Set(A.cache.appts.map(a=>a.doctor_id)).size,"#FEE9E1","#FF6B35","pd-doctors");
       
       
       
