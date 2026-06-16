@@ -131,7 +131,8 @@ function toast(msg,err=false){
 }
 function spin(id,msg="Loading..."){const el=$(id);if(el)el.innerHTML=`<div class="loading-box"><div class="spinner"></div>${msg}</div>`;}
 function sc(ic,lb,v,bg="#E3F4FC",vc="#0A7FAF",scrollTo=""){
-  return `<div class="stat-card"><div class="stat-icon" style="background:${bg}">${ic}</div><div><div class="stat-val" style="color:${vc}">${v}</div><div class="stat-lbl">${lb}</div></div></div>`;
+  const click=scrollTo?`onclick="document.getElementById('${scrollTo}')?.scrollIntoView({behavior:'smooth'})" style="cursor:pointer"`:"";
+    return `<div class="stat-card" ${click}><div class="stat-icon" style="background:${bg}">${ic}</div><div><div class="stat-val" style="color:${vc}">${v}</div><div class="stat-lbl">${lb}</div></div></div>`;
 }
 function empty(ic,msg,btn=""){
   return `<div class="empty"><div class="empty-icon">${ic}</div><div class="empty-msg">${msg}</div>${btn}</div>`;
