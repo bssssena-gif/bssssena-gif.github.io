@@ -504,7 +504,7 @@ async function loadAllData(){
     ADMIN.data.docs=docs; ADMIN.data.pats=pats; ADMIN.data.appts=appts;
     try{ADMIN.data.stores=await DB.get("medical_stores");}catch{ADMIN.data.stores=[];}
     try{ADMIN.data.ambus=await DB.get("ambulances");}catch{ADMIN.data.ambus=[];}
-    try{ADMIN.data.labs=await DB.get("labs");}catch{ADMIN.data.labs=[];}
+    try{ADMIN.data.labs=await DB.get("diagnostic_labs");}catch{ADMIN.data.labs=[];}
     try{ADMIN.data.support=await DB.get("support_messages");}catch{ADMIN.data.support=[];}
     try{ADMIN.data.notifs=await DB.get("notifications","limit=100");}catch{ADMIN.data.notifs=[];}
     try{ADMIN.data.reviews=await DB.get("doctor_reviews");}catch{ADMIN.data.reviews=[];}
