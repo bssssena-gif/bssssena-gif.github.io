@@ -257,9 +257,16 @@ async function patientLogin(){
   }catch(e){toast(e.message,true);}
   finally{if(btn){btn.disabled=false;btn.textContent="Sign In";}}
 }
+async function emailExistsAnywhere(email){
+  const tables=["patients","doctors","medical_stores","ambulances","diagnostic_labs","admins"];
+  for(const t of tables){
+    try{const r=await safeGet(t,`email=eq.${enc(email)}`);if(r.length)return true;}catch{}
+  }
+  return false;
+}         
 async function patientRegister(){
-  const name=gv("pr-name"),email=gv("pr-email"),pw=gv("pr-pw"),
-    phone=gv("pr-phone"),age=gv("pr-age"),blood=gv("pr-blood"),gender=gv("pr-gender");
+  if(await emailExistsAnywhere(email)){toast("This email is already registered. Please use a different email.",true);return;}
+    
   if(!name||!email||!pw||!phone||!age){toast("Fill all required fields.",true);return;}
   if(pw.length<6){toast("Password min 6 characters.",true);return;}
   const btn=$("pr-btn");if(btn){btn.disabled=true;btn.textContent="Creating...";}
@@ -291,8 +298,8 @@ async function doctorLogin(){
 }
 async function doctorRegister(){
   const f={name:gv("dr-name"),email:gv("dr-email"),pw:gv("dr-pw"),phone:gv("dr-phone"),
-    spec:gv("dr-spec"),reg:gv("dr-reg"),hosp:gv("dr-hosp"),loc:gv("dr-loc"),
-    exp:gv("dr-exp"),fee:gv("dr-fee"),about:gv("dr-about"),qual:gv("dr-qual")};
+    if(await emailExistsAnywhere(email)){toast("This email is already registered. Please use a different email.",true);return;}
+    
   if(!f.name||!f.email||!f.pw||!f.phone||!f.spec||!f.reg||!f.hosp||!f.loc||!f.exp||!f.fee){
     toast("Fill all required fields.",true);return;}
   const btn=$("dr-btn");if(btn){btn.disabled=true;btn.textContent="Submitting...";}
@@ -328,8 +335,8 @@ async function storeLogin(){
   }catch(e){toast(e.message,true);}
   finally{if(btn){btn.disabled=false;btn.textContent="Sign In";}}
 }
-async function storeRegister(){
-  const f={owner:gv("sr-owner"),store:gv("sr-store"),email:gv("sr-email"),pw:gv("sr-pw"),
+if(await emailExistsAnywhere(email)){toast("This email is already registered. Please use a different email.",true);return;}
+  
     phone:gv("sr-phone"),addr:gv("sr-address"),lic:gv("sr-license"),gst:gv("sr-gst")};
   if(!f.owner||!f.store||!f.email||!f.pw||!f.phone||!f.addr){toast("Fill all required fields.",true);return;}
   const btn=$("sr-btn");if(btn){btn.disabled=true;btn.textContent="Submitting...";}
