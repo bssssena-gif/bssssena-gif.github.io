@@ -365,7 +365,7 @@ async function ambuLogin(){
 async function ambuRegister(){
   const f={op:gv("ar-operator"),email:gv("ar-email"),pw:gv("ar-pw"),phone:gv("ar-phone"),
     veh:gv("ar-vehicle"),type:gv("ar-type"),pricing:gv("ar-pricing"),loc:gv("ar-location")};
-  if(!f.op||!f.email||!f.pw||!f.phone||!f.veh||!f.type||!f.base||!f.km){toast("Fill all required fields.",true);return;}
+  if(!f.op||!f.email||!f.pw||!f.phone||!f.veh||!f.type||!f.loc){toast("Fill all required fields.",true);return;}
   const btn=$("ar-btn");if(btn){btn.disabled=true;btn.textContent="Submitting...";}
   try{
     const hash=await sha(f.pw);
