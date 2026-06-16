@@ -707,12 +707,12 @@ function renderLabApprovals(){
     </div>`).join("");
 }
 async function approveLabId(id){
-  try{await DB.patch("labs","id=eq."+id,{approved:true});ADMIN.data.labs=(ADMIN.data.labs||[]).map(l=>l.id===id?{...l,approved:true}:l);toast("Lab approved! ✅");renderLabApprovals();updateBadges();}
+  try{await DB.patch("diagnostic_labs","id=eq."+id,{approved:true});ADMIN.data.labs=(ADMIN.data.labs||[]).map(l=>l.id===id?{...l,approved:true}:l);toast("Lab approved! ✅");renderLabApprovals();updateBadges();}
   catch(e){toast(e.message,true);}
 }
 async function rejectLabId(id){
   if(!confirm("Reject this lab?"))return;
-  try{await DB.delete("labs","id=eq."+id);ADMIN.data.labs=(ADMIN.data.labs||[]).filter(l=>l.id!==id);toast("Lab rejected.");renderLabApprovals();updateBadges();}
+  try{await DB.delete("diagnostic_labs","id=eq."+id);ADMIN.data.labs=(ADMIN.data.labs||[]).filter(l=>l.id!==id);toast("Lab rejected.");renderLabApprovals();updateBadges();}
   catch(e){toast(e.message,true);}
 }
 
