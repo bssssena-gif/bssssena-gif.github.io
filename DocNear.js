@@ -298,15 +298,15 @@ async function doctorLogin(){
 }
 async function doctorRegister(){
   const f={name:gv("dr-name"),email:gv("dr-email"),pw:gv("dr-pw"),phone:gv("dr-phone"),
-    if(await emailExistsAnywhere(email)){toast("This email is already registered. Please use a different email.",true);return;}
+    
     
   if(!f.name||!f.email||!f.pw||!f.phone||!f.spec||!f.reg||!f.hosp||!f.loc||!f.exp||!f.fee){
     toast("Fill all required fields.",true);return;}
   const btn=$("dr-btn");if(btn){btn.disabled=true;btn.textContent="Submitting...";}
   try{
     const hash=await sha(f.pw);
-    const ex=await safeGet("doctors",`email=eq.${enc(f.email)}`);
-    if(ex.length){toast("Email already registered.",true);return;}
+    if(await emailExistsAnywhere(f.email)){toast("This email is already registered.",true);return;}
+    
     await safePost("doctors",{
       name:f.name,email:f.email,password_hash:hash,phone:f.phone,
       specialization:f.spec,reg_number:f.reg,hospital:f.hosp,location:f.loc,city:f.loc,
