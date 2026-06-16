@@ -696,10 +696,13 @@ async function rPatientDash(){
     A.cache.appts=appts.length?appts:DEMO.appts.filter(a=>a.patient_id===u.id);
     A.cache.docs=docs.length?docs:DEMO.docs;
     if($("pd-stats"))$("pd-stats").innerHTML=
-      sc("📅","Appointments",A.cache.appts.length)+
-      sc("✅","Confirmed",A.cache.appts.filter(a=>a.status==="confirmed").length,"#D1FAE5","#059669")+
-      sc("🎥","Video",A.cache.appts.filter(a=>a.is_video).length,"#EDE9FE","#7C4DFF")+
-      sc("👨‍⚕️","Doctors",new Set(A.cache.appts.map(a=>a.doctor_id)).size,"#FEE9E1","#FF6B35");
+      sc("📅","Appointments",A.cache.appts.length,"#E3F4FC","#0A7FAF","pd-appts")+
+sc("✅","Confirmed",A.cache.appts.filter(a=>a.status==="confirmed").length,"#D1FAE5","#059669","pd-appts")+
+sc("🎥","Video",A.cache.appts.filter(a=>a.is_video).length,"#EDE9FE","#7C4DFF","pd-appts")+
+sc("👨‍⚕️","Doctors",new Set(A.cache.appts.map(a=>a.doctor_id)).size,"#FEE9E1","#FF6B35","pd-doctors");
+      
+      
+      
     if($("pd-appts"))$("pd-appts").innerHTML=A.cache.appts.length?A.cache.appts.map(a=>apptCard(a)).join(""):empty("📋","No appointments yet.",`<button class="btn btn-primary btn-sm" onclick="go('search')">Book Now</button>`);
     if($("pd-doctors"))$("pd-doctors").innerHTML=A.cache.docs.map(d=>docCard(d)).join("");
   }catch(e){toast("Error: "+e.message,true);}
