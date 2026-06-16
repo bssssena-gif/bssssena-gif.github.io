@@ -847,6 +847,15 @@ async function toggleDoctorAvailability(){
     toast("Status: "+(next?"Online 🟢":"Offline 🔴"));rDoctorDash();
   }catch(e){toast(e.message,true);}
 }
+  async function toggleVideoConsult(){
+  if(!A.user)return;
+  const next=!A.user.video_consult;
+  try{
+    await DB.patch("doctors","id=eq."+A.user.id,{video_consult:next});
+    A.user.video_consult=next;S.save(A.user,"doctor");
+    toast(next?"Video Consult Enabled 🎥":"Video Consult Disabled");rDoctorDash();
+  }catch(e){toast(e.message,true);}
+}
 async function toggleStoreAvailability(){
   if(!A.user)return;
   const cur=A.user.is_available!==false;
