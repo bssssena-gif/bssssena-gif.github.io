@@ -899,7 +899,7 @@ async function rLabDash(){
       sc("✅","Completed",bk.filter(b=>b.status==="completed").length,"#D1FAE5","#059669")+
       sc("🧪","Tests",tests.length,"#EDE9FE","#7C4DFF");
     if($("ld-bookings"))$("ld-bookings").innerHTML=bk.length?bk.map(b=>`<div class="appt-card" style="border-left:4px solid #7C4DFF"><div style="font-size:14px;font-weight:700">${safe(b.patient_name)||"Patient"}</div><div style="font-size:12px;color:#6B7280">📅 ${b.scheduled_date||"—"} · ${safe(b.collection_type)}</div><div style="margin-top:6px">${sPill(b.status)}</div></div>`).join(""):empty("📅","No bookings yet.");
-    if($("ld-tests"))$("ld-tests").innerHTML=tests.length?`<div style="display:grid;gap:8px">`+tests.map(t=>`<div style="background:#F9FAFB;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><div style="font-size:13px;font-weight:600;color:#1A2B3C">${t.test_name}</div><div style="font-size:11px;color:#9CA3AF">${t.category} · ${t.report_time||"Same Day"}</div></div><div style="font-size:13px;font-weight:600;color:#059669">Free</div></div>`).join("")+"</div>":empty("🧪","No tests added yet.",`<button class="btn btn-purple btn-sm" onclick="showAddTestForm()">+ Add Test</button>`);
+    if($("ld-tests"))$("ld-tests").innerHTML=tests.length?`<div style="display:grid;gap:8px">`+tests.map(t=>`<div style="background:#F9FAFB;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><div style="font-size:13px;font-weight:600;color:#1A2B3C">${t.test_name}</div><div style="font-size:11px;color:#9CA3AF">${t.category} · ${t.report_time||"Same Day"}</div></div><div style="font-size:13px;font-weight:600;color:#7C4DFF">₹${t.price}</div></div>`).join("")+"</div>":empty("🧪","No tests added yet.",`<button class="btn btn-purple btn-sm" onclick="showAddTestForm()">+ Add Test</button>`);
     if($("ld-info"))$("ld-info").innerHTML=[
       ["🔬","Lab Name",u.lab_name],["👤","Owner",u.owner_name],
       ["📞","Phone",u.phone],["📍","Address",u.address||u.district],
@@ -1272,7 +1272,7 @@ async function rLabDetail(){
       </div>
       <div style="text-align:right;flex-shrink:0">
         
-        <div style="font-size:13px;font-weight:600;color:#059669">Free</div>
+        <div style="font-size:13px;font-weight:600;color:#7C4DFF">₹${t.price||0}</div>
         ${t.discount>0?`<div style="font-size:10px;color:#059669;font-weight:600">${t.discount}% off</div>`:""}
       </div>
     </div>`).join("")}
