@@ -1428,6 +1428,7 @@ async function toggleNotif(prefix){
   const isOpen=panel.style.display!=="none";
   panel.style.display=isOpen?"none":"block";
   if(!isOpen&&A.user){
+    toast("User ID: "+(A.user?.id||"none"),false);
     const notifs=await loadNotifications(A.user.id,A.role);
     const list=$(prefix+"-notifs");
     if(list){
