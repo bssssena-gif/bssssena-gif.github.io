@@ -1403,12 +1403,20 @@ async function rAdvancedSearch(){
 /* ════════ NOTIFICATIONS (Database) ════════ */
 async function loadNotifications(userId, userType){
   try{
-    const notifs=await safeGet("notifications",
-      `user_id=eq.${userId}&is_read=eq.false`);
-      
-    return notifs;
+    const res=await fetch(`${SURL}/rest/v1/notifications?user_id=eq.${userId}&is_read=eq.false`,{
+      headers:{"apikey":SKEY,"Authorization":"Bearer "+SKEY,"Content-Type":"application/json"}
+    });
+    const data=await res.json();
+    return Array.isArray(data)?data:[];
   }catch{return [];}
 }
+  
+    
+      
+      
+    
+  
+
 async function markNotifRead(notifId){
   try{await DB.patch("notifications","id=eq."+notifId,{is_read:true}).catch(()=>{});}
   catch{}
