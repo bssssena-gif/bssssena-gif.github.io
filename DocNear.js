@@ -1418,5 +1418,33 @@ async function sendNotification(userId, userType, title, message, type="info"){
       user_id:userId, user_type:userType,
       title, message, type, is_read:false
     });
+ async function toggleNotif(prefix){
+  const panel=$(prefix+"-notif-panel");
+  if(!panel)return;
+  const isOpen=panel.style.display!=="none";
+  panel.style.display=isOpen?"none":"block";
+  if(!isOpen&&A.user){
+    const notifs=await loadNotifications(A.user.id,A.role);
+    const list=$(prefix+"-notifs");
+    if(list){
+      list.innerHTML=notifs.length?notifs.map(n=>`
+        <div style="padding:10px;border-bottom:1px solid #F3F4F6;cursor:pointer" onclick="markNotifRead('${n.id}');this.style.opacity='0.5'">
+          <div style="font-size:13px;font-weight:600;color:#1A2B3C">${safe(n.title)}</div>
+          <div style="font-size:12px;color:#6B7280;margin-top:2px">${safe(n.message)}</div>
+          <div style="font-size:10px;color:#9CA3AF;margin-top:2px">${new Date(n.created_at).toLocaleString()}</div>
+        </div>`).join(""):"<div class='text-muted'>No new notifications.</div>";
+      const badge=$(prefix.replace("-","")==="pd"?"nb-pd":prefix==="dd"?"nb-dd":prefix==="sd"?"nb-sd":prefix==="ld"?"nb-ld":"nb-ad");
+      if(badge)badge.textContent=notifs.length||"";
+    }
+  }
+}
+async function refreshNotifBadges(){
+  if(!A.user)return;
+  const prefix=A.role==="patient"?"pd":A.role==="doctor"?"dd":A.role==="store"?"sd":A.role==="lab"?"ld":"ad";
+  try{
+    const notifs=await loadNotifications(A.user.id,A.role);
+    const badge=$("nb-"+prefix);
+    if(badge)badge.textContent=notifs.length||"";
   }catch{}
+} 
 }
