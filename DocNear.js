@@ -1422,6 +1422,7 @@ async function sendNotification(userId, userType, title, message, type="info"){
 }
 async function toggleNotif(prefix){
   const panel=$(prefix+"-notif-panel");
+    if(!panel){toast("Panel not found: "+prefix,true);return;}
   if(!panel)return;
   const isOpen=panel.style.display!=="none";
   panel.style.display=isOpen?"none":"block";
