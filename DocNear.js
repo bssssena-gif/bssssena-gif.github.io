@@ -1404,7 +1404,7 @@ async function rAdvancedSearch(){
 async function loadNotifications(userId, userType){
   try{
     const notifs=await safeGet("notifications",
-      `user_id=eq.${userId}&is_read=eq.false&limit=10`);
+      `user_id=eq.${userId}&is_read=eq.false`);
       
     return notifs;
   }catch{return [];}
