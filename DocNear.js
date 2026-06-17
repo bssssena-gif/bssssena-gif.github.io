@@ -1064,7 +1064,7 @@ async function confirmBook(){
     const ml=isV?"https://meet.jit.si/docnear-"+(crypto.randomUUID?crypto.randomUUID().slice(0,10):Date.now()):null;
     await safePost("appointments",{
       patient_id:A.user.id,patient_name:A.user.name,doctor_id:d.id,doctor_name:d.name,
-      specialization:d.specialization,date,slot:A.slot,status:"confirmed",
+      specialization:d.specialization,date,slot:A.slot,status:"pending",
       fee:d.fee,payment_status:"pending",is_video:isV,meeting_link:ml
     },data=>[{...data,id:"ap_"+Date.now()}]);
     DB.post("notifications",{user_id:d.id,user_type:"doctor",title:"New Appointment 📅",message:`${A.user.name} — ${date} at ${A.slot}${isV?" (Video)":""}`,type:"info"}).catch(()=>{});
