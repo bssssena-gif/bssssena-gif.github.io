@@ -1,4 +1,4 @@
-const CACHE_NAME = "docnear-v27";
+const CACHE_NAME = "docnear-v28";
 const STATIC_ASSETS = [
   "./index.html",
   "./DocNear.css",
