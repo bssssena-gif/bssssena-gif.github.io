@@ -679,7 +679,7 @@ async function fetchDocs(){
     let docs=await safeGet("doctors",q,"docs");
     if(!docs.length)docs=DEMO.docs;
     if(A.spec)docs=docs.filter(d=>d.specialization===A.spec);
-    if(A.q){const v=A.q.toLowerCase();docs=docs.filter(d=>safe(d.name).toLowerCase().includes(v)||safe(d.specialization).toLowerCase().includes(v)||safe(d.hospital).toLowerCase().includes(v));}
+    if(A.q){const v=A.q.toLowerCase();docs=docs.filter(d=>safe(d.name).toLowerCase().includes(v)||safe(d.specialization).toLowerCase().includes(v)||safe(d.hospital).toLowerCase().includes(v)||safe(d.city).toLowerCase().includes(v)||safe(d.location).toLowerCase().includes(v)||safe(d.district).toLowerCase().includes(v));}
     A.cache.docs=[...A.cache.docs.filter(d=>!docs.find(x=>x.id===d.id)),...docs];
     if(ce)ce.textContent=docs.length+" doctor"+(docs.length!==1?"s":"")+" found";
     re.innerHTML=docs.length?docs.map(d=>docCard(d)).join(""):empty("🔍","No doctors found. Try different filters.");
