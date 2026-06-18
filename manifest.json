@@ -2,7 +2,7 @@
   "name": "DocNear – Book Doctor Appointments",
   "short_name": "DocNear",
   "description": "Find verified doctors and book appointments instantly",
-  "start_url": "./index.html"
+  "start_url": "./DocNear.html"
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0A7FAF",
