@@ -1304,7 +1304,7 @@ async function bookLabTest(labId,testId,testName){
       patient_address:A.user.address||"",
       status:"booked"
     });
-    });
+    
     toast("Test booked! 🧪 "+(l?l.lab_name+" will contact you.":""));
   }catch(e){toast(e.message,true);}
 }
