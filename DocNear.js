@@ -173,7 +173,7 @@ function logout(){
   toast("Logged out.");go("landing");
 }
 function redirectRole(role){
-  const r={patient:"patientDash",doctor:"doctorDash",store:"storeDash",ambulance:"ambuDash",lab:"labDash",admin:null};
+  const r={patient:"patientDash",doctor:"doctorDash",store:"storeDash",ambulance:"ambuDash",lab:"labDash",homeprovider:"hpDash",admin:null};
   if(role==="admin"){setTimeout(()=>{window.location.href="admin.html";},800);return;}
   go(r[role]||"landing");
 }
