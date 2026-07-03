@@ -1,8 +1,10 @@
 const CACHE_NAME = "docnear-v78";
 const STATIC_ASSETS = [
-  "./index.html",
+  "./index.html", 
   "./DocNear.css",
-  "./DocNear.js",
+  "./DocNear-1.js",
+  "./DocNear-2.js",
+  "./DocNear-3.js",
   "./admin.html",
   "./manifest.json"
 ];
